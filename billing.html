@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Billing Management - CityCare</title>
+
+    <link rel="stylesheet" href="css/billing.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <h2>🏥 CityCare</h2>
+
+        <ul>
+
+            <li>
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="patients.html">
+                    <i class="fa-solid fa-user"></i>
+                    Patients
+                </a>
+            </li>
+
+            <li>
+                <a href="doctors.html">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    Doctors
+                </a>
+            </li>
+
+            <li>
+                <a href="appointments.html">
+                    <i class="fa-solid fa-calendar"></i>
+                    Appointments
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="billing.html">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    Billing
+                </a>
+            </li>
+
+            <li>
+                <a href="about.html">
+                    <i class="fa-solid fa-circle-info"></i>
+                    About
+                </a>
+            </li>
+
+            <li>
+                <a href="contact.html">
+                    <i class="fa-solid fa-address-book"></i>
+                    Contact
+                </a>
+            </li>
+
+            <li class="logout">
+                <a href="#" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main">
+
+        <div class="page-header">
+
+            <div>
+                <h1>Billing Management</h1>
+                <p>Manage patient bills and payments</p>
+            </div>
+
+            <button class="add-btn" onclick="openBillForm()">
+                <i class="fa-solid fa-plus"></i>
+                Create New Bill
+            </button>
+
+        </div>
+
+
+        <!-- Billing Form -->
+
+        <section class="billing-form" id="billingForm">
+
+            <h2>
+                <i class="fa-solid fa-file-invoice"></i>
+                Create Bill
+            </h2>
+
+            <form id="billForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Patient</label>
+
+                        <select id="patient" required>
+
+                            <option value="">
+                                Select Patient
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Amount</label>
+
+                        <input
+                            type="number"
+                            id="amount"
+                            placeholder="Enter amount"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Payment Method</label>
+
+                        <select id="paymentMethod" required>
+
+                            <option value="">
+                                Select Payment Method
+                            </option>
+
+                            <option value="Cash">
+                                Cash
+                            </option>
+
+                            <option value="Card">
+                                Card
+                            </option>
+
+                            <option value="UPI">
+                                UPI
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Status</label>
+
+                        <select id="status">
+
+                            <option value="Pending">
+                                Pending
+                            </option>
+
+                            <option value="Paid">
+                                Paid
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-buttons">
+
+                    <button type="submit" class="save-btn">
+                        <i class="fa-solid fa-check"></i>
+                        Save Bill
+                    </button>
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="closeBillForm()"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- Billing Statistics -->
+
+        <section class="billing-cards">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-file-invoice"></i>
+                </div>
+
+                <div>
+                    <h3 id="totalBills">0</h3>
+                    <p>Total Bills</p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+                    <h3 id="paidBills">0</h3>
+                    <p>Paid Bills</p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+                    <h3 id="pendingBills">0</h3>
+                    <p>Pending Bills</p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon red">
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                </div>
+
+                <div>
+                    <h3 id="totalRevenue">₹0</h3>
+                    <p>Total Revenue</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Bills Table -->
+
+        <section class="table-section">
+
+            <div class="table-header">
+
+                <h2>
+                    <i class="fa-solid fa-receipt"></i>
+                    Billing Records
+                </h2>
+
+                <input
+                    type="text"
+                    id="searchBill"
+                    placeholder="Search patient..."
+                    onkeyup="searchBills()"
+                >
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>#</th>
+                            <th>Patient</th>
+                            <th>Amount</th>
+                            <th>Payment Method</th>
+                            <th>Status</th>
+                            <th>Date</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="billingTable">
+
+                        <tr>
+
+                            <td colspan="6" class="loading">
+                                Loading billing records...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/billing.js"></script>
+
+</body>
+</html>

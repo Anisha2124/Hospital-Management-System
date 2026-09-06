@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Appointment Management</title>
+
+    <link rel="stylesheet" href="css/appointment.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Appointment Management</h1>
+
+    <form id="appointmentForm">
+
+        <select id="patient" required>
+            <option value="">Select Patient</option>
+        </select>
+
+        <select id="doctor" required>
+            <option value="">Select Doctor</option>
+        </select>
+
+        <input
+            type="datetime-local"
+            id="appointmentDate"
+            required
+        >
+
+        <select id="status">
+
+            <option value="Pending">Pending</option>
+
+            <option value="Completed">Completed</option>
+
+            <option value="Cancelled">Cancelled</option>
+
+        </select>
+
+        <button type="submit">
+            Save Appointment
+        </button>
+
+    </form>
+
+    <br>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="appointmentTable"></tbody>
+
+    </table>
+
+</div>
+
+<script src="js/appointment.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CityCare Hospital Dashboard</title>
+
+    <script>
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            🏥 <span>CityCare</span>
+
+        </div>
+
+        <ul>
+
+            <li class="active">
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="patients.html">
+                    <i class="fa-solid fa-user"></i>
+                    Patients
+                </a>
+            </li>
+
+            <li>
+                <a href="doctors.html">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    Doctors
+                </a>
+            </li>
+
+            <li>
+                <a href="appointments.html">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Appointments
+                </a>
+            </li>
+
+            <li>
+                <a href="billing.html">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    Billing
+                </a>
+            </li>
+
+            <li>
+                <a href="about.html">
+                    <i class="fa-solid fa-circle-info"></i>
+                    About
+                </a>
+            </li>
+
+            <li>
+                <a href="contact.html">
+                    <i class="fa-solid fa-address-book"></i>
+                    Contact
+                </a>
+            </li>
+
+        </ul>
+
+        <button class="logout-btn" onclick="logout()">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main">
+
+        <!-- Header -->
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>Hospital Management Dashboard</h1>
+
+                <p>Welcome back, Administrator 👋</p>
+
+            </div>
+
+            <div class="datetime">
+
+                <h3 id="currentDate"></h3>
+
+                <h2 id="currentTime"></h2>
+
+            </div>
+
+        </div>
+
+        <!-- Cards -->
+
+        <section class="cards">
+
+            <div class="card blue">
+
+                <i class="fa-solid fa-user"></i>
+
+                <h2 id="patientCount">0</h2>
+
+                <p>Total Patients</p>
+
+            </div>
+
+            <div class="card green">
+
+                <i class="fa-solid fa-user-doctor"></i>
+
+                <h2 id="doctorCount">0</h2>
+
+                <p>Total Doctors</p>
+
+            </div>
+
+            <div class="card orange">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <h2 id="appointmentCount">0</h2>
+
+                <p>Appointments</p>
+
+            </div>
+
+            <div class="card red">
+
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                <h2 id="revenue">₹0</h2>
+
+                <p>Revenue</p>
+
+            </div>
+
+        </section>
+
+        <!-- Chart -->
+
+        <div class="chart-card">
+
+            <h2>Hospital Statistics</h2>
+
+            <canvas id="dashboardChart"></canvas>
+
+        </div>
+
+        <!-- Recent Appointments -->
+
+        <div class="table-card">
+
+            <h2>Recent Appointments</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="appointmentTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="js/dashboard.js"></script>
+
+<script>
+
+function logout(){
+
+    localStorage.removeItem("isLoggedIn");
+
+    window.location.href="login.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

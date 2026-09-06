@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CityCare Hospital | Admin Login</title>
+
+    <link rel="stylesheet" href="css/login.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-box">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-hospital"></i>
+
+            <h1>CityCare Hospital</h1>
+
+            <p>Hospital Management System</p>
+
+        </div>
+
+        <h2>Admin Login</h2>
+
+        <form id="loginForm">
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter Email"
+                    required>
+
+            </div>
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter Password"
+                    required>
+
+            </div>
+
+            <button type="submit">
+
+                Login
+
+            </button>
+
+            <p id="error" class="error"></p>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+document.getElementById("loginForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    if(email === "admin@citycarehospital.com" && password === "admin123"){
+
+        alert("Login Successful!");
+         localStorage.setItem("isLoggedIn", "true");
+
+        window.location.href = "dashboard.html";
+
+    }
+    else{
+
+        document.getElementById("error").innerHTML =
+        "Invalid Email or Password";
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>
